@@ -1,0 +1,188 @@
+---
+title: "EcolLinkPredict Vignette"
+author: "Chris Terry"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+require(bipartite)
+require(EcoLinkPredict)
+require(purrr)
+require(dplyr)
+require(tidyr)
+require(ggplot2)
+```
+
+
+# Introduction
+
+This package provides tools to determine the probably effect of undersampling in bipartite ecological networks and tools to determine likely gaps in ecological data following the approaches discussed in XXX by Terry & yyy (2019).
+
+While this cannot replace further sampling, by making it as easy as possible to assess the most likely missing links, we hope we can encourage further consideration of the quality of ecological networks. 
+
+We provide two 'high level functions' that are designed to work as easily as possible out of the box: `PredictLinks()` and `RarefyNetwork()`. Both functions are designed to work in conjunction with the `bipartite` package (Dormann et al, 2008). They both come with accompanying plotting functions that return ggplot objects displaying the key information.
+
+# Data format requirements
+
+Both functions assume that you have a quantitative ecological network matrix in the format ready to go with the widely used `bipartite` package. It should be in bipartite form, i.e. a potentially rectangular matrix of side lengths NxM rather than SxS. There should not be any additional columns with totals or other summaries. 
+
+The package `bipartite` provides some useful tools to help with this such as `frame2Webs()`.
+
+Data in this format has rows being each of the focal layer (referred to as 'Host' in the underlying function documentation) and columns detailing the response layer (referred to as 'Wasp' in the underlying documentation). The distinction is that the focal layer is the layer where you have control over the sampling - for example which plants were watched, which hosts were gathered for parasite-rearing etc. 
+
+If present, row names and column names are retained for use. Species that are not observed interacting with any others are removed. 
+
+For this vignette, we will use one of the datasets bundled with the `bipartite` package:
+
+```{r}
+data(Safariland, package= 'bipartite')
+
+Safariland
+
+```
+
+# `RarefyNetwork()` - Metric Responses to Resampling
+
+The purpose of this function is to provide an easy way to get some information on the confidence with which network metrics can be assigned, given a particular level of sampling. It does this by redrawing observations with probabilities proportional to the relative interaction frequency, and assessing the spread of the network metrics. 
+
+This has three main purposes: to (visually) assess whether a metric has stabilised with the level of sampling, to assess (via bootstrapped confidence intervals) the precision with which that metric can be reported, and to allow the rarefaction of different networks to a matched sample size to allow a more equitable comparison of metrics that are known to be correlated with sample size.
+
+The function calls `networklevel()` from the `bipartite` package, which offers the vast majority of bipartite network metrics used by ecologists. Note that if the re-sampling procedure means that certain species are no longer present in the network, then they will be dropped by the function by default. This could lead to some problems for some metrics such as overall connectance since the number of possible interactions will decrease with a smaller web size. This can be overcome by passing `empty.web=FALSE` to the `...` argument. 
+
+A basic way used to calculate confidence intervals is to sort the metric values from the re-sampled networks and find the value at the 5th and 95th percentile. These values must still be treated with some caution as the re-sampling procedure will not generate unobserved interaction. Nonetheless it can give an indication of the extent to which the sampling is sufficient to make a particular conclusion. Any `NA` values are excluded. These are only likely to occur for certain quantitative metrics that may fail for small networks (e.g. `weighted nestedness` can do this). By excluding NA's a value can still be returned, by since these NA's are non-random they may skew the results. The underyling `networklevel()` function should warn which metric and for what size this may be an issue. 
+
+
+### Function Arguments
+
++ `web` a network formatted for bipartite (see above)
++ `n_per_level` How many samples to draw at each sampling level. Should be quite large to get a converged distribution, default is 1000
++ `metrics` Vector of metrics to calculate. This is passed directly to `networklevel()`, so see that help file for the full list. Useful shortcuts include:
+++ `'ALLBUTDD'` which calculates all indices except degree distribution fits
+++ `'info'` for basic information
+++ `'binary'` for some qualitative metrics
+++ `'quantitative'` for some quantitative metrics.
+
+Beware that each metric will be called potentially many 1000s of times, so don't be too greedy! The degree distribution fit metrics will not work as they cannot be coerced easily into a vector. `?networklevel()` discusses time considerations.
+
+and then ONE of:
+
++ `frac_sample_levels` A sequence detailing fractions of the original sample size to rarefy to. Can be larger than 1 to extrapolate potential future confidence.
++ `abs_sample_levels` Manually specify a sequence of sample sizes to rarefy to. Suitable for use with non-integer quantitative webs. 
+
+Then there are two optional arguments if you want to take advantage of parallel computation. If `PARALLEL=TRUE`, it will use the `parallel` package to split the network calculations over the number of cores set by `cores`.
+
+By default it will return a data frame of the raw recalculated metrics, with a separate column for each metric, and the last column specifying the resample size.
+
+This data frame can then be passed to `ComputeCI()` to return basic confidence intervals (in a data frame containing 5 columns: Metric, LowerCI, UpperCI, Mean \& SampleSize), or to `PlotRarefaction()` to make a simple ggplot. Both these functions have no additional arguments and are pretty basic. The look of the ggplots can be modified as normal.
+
+If you want to skip this step, it is possible to pass an `output` argument direct to `RarefyNetwork()`. If `'plot'` will return a ggplot object using `PlotRarefaction()`, and if `output='CI'` it will return a data frame using `ComputeCI()`. 
+
+
+```{r fig.height=4, fig.width=8}
+
+MetricsAfterReSampling<- RarefyNetwork(Safariland, n_per_level = 50, 
+                                       metrics = c('H2', 'nestedness', 'links per species'))
+
+PlotRarefaction(MetricsAfterReSampling)
+
+ComputeCI(MetricsAfterReSampling)
+
+```
+
+
+```{r fig.height=8, fig.width=8, message=FALSE}
+RarefyNetwork(Safariland,
+              n_per_level = 50,
+              abs_sample_levels = c(500, 1000, 5000),
+              metrics = 'info', 
+              output = 'plot')
+```
+
+
+# `PredictLinks()` - Inferring Missing Links
+
+This is the simplest function to quickly generate predictions based on a bipartite network. A description and reasoning and behind each model is given in Terry et al [link]. The function here is deliberately as simple as possible - to tinker with the too many of the settings you will need to dig into the functions which it calls. See the SI for the original paper for a script that uses the other functions in this package to conduct some more specific and detailed analyses.
+
+The coverage deficit models assume that the data is raw count data - so don't transform or standardise it in any way before use. The network structure models work from presence-absence data, so any transformations would not affect them.
+
+Calling `PredictLinks(web)` will return a list object with many components. The most important is `$Predictions`, which is a data frame with columns detailing the predictions of each of the five models discussed in the paper.
+
+These are returned 'raw' and standardised (preceded by `std_`). The raw values include the probabilities of each interaction (observed or unobserved) as fitted by each model. The standardised equivalents are divided through by the mean probability of each unobserved interaction, to give a *relative* probability for each potential missing link. 
+
+There is just one additional optional argument: `RepeatModels` which controls how many times to fit each statistical model. The best half (rounding up) model predictions are averaged which evens out edge cases and helps with the optimisation runs which may get stuck at poor local optima.. The default is set to 10, which fits relatively quickly (under 30 seconds in most cases). It might be worth raising this if there is time. 
+
+```{r}
+PredictFit <- PredictLinks(Safariland , RepeatModels = 1) # Set to 1 here for speed in the vignette
+
+knitr::kable(head(PredictFit$Predictions), digits = 4 )
+
+```
+
+## Visualising the Predictions
+
+The function `PlotFit()` extracts information from the list object to produce a heat-map of the strengths of predictions, both in terms of how the goodness of fit to the observed interactions and the distribution of predictions. 
+
+It needs to be supplied with a network list, for example the output from `PredictLinks()`, and the network model that you wish to plot to `Matrix_to_plot()`. 
+
+This uses a shorthand:
+
++ `M` = the latent-trait '**M**atching' model
++ `C` = the '**C**entrality' model of vulnerability and generality
++ `B` = the '**B**oth' matching-centrality model
++ `SBM` = the **s**tochastic **b**lock **m**odel
++ `C_def` = the **c**overage **def**icit model
+
+If a vector of multiple models is provided, they will combined according to the `Combine` argument. If `'+'` they will be averaged, if `'*'` they will be multiplied.
+
+There are various options for arranging the species. By default it will take a guess based on the predictive model, to best display how it has fit the network, but this can be controlled manually with `OrderBy`.
+
+The options for `OrderBy` are:
+
++ `'Degree'`: Sort each level by number of observed interactors
++ `'Manual'`: Controlled by the order of `WaspNames` and `HostNames` in the network list (not really for easy use)
++ `'AsPerMatrix'`: Order will follow the original web
++ `'SBM'`: Sort by group assignations in the SBM
++ `'LatentTrait'`: Sort by the best fitting latent trait (Matching) model parameters
+
+There are three further graphical options:
+
+if `addDots = TRUE` then observed species will be have a black dot, and if  `addDots = 'Size'` then a dot proportional to the number of observations will be drawn. This is most useful for the coverage deficit model since the others only make use of the binary interaction matrix.
+
+and
+
+if `RemoveTP = TRUE` then the observed species will not be coloured. This is mostly useful for plotting coverage deficit model.
+
+Finally `title` adds a manual title. 
+
+The function returns a ggplot object, which can be further customised by adding ggplot elements in the usual way. The most common cases would probably be switching off the guides, since the colours are relative. There might be few coercion warnings - these should be ok, mostly a product of trying the make the code as robust as possible to either having or not having named species.
+
+### Two examples:
+
+```{r fig.height=4, fig.width=8, warning=FALSE}
+PlotFit(PredictFit, Matrix_to_plot = 'SBM')
+
+PlotFit(PredictFit,
+        Matrix_to_plot = c('SBM', 'C_def'),Combine = '+',
+        OrderBy = 'Degree', 
+        title = 'Combined SBM and Coverage Deficit Model') + guides(fill= FALSE, col=FALSE)
+
+```
+
+
+
+### Session Information
+
+```{r}
+sessionInfo()
+```
+

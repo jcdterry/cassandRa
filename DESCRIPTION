@@ -1,0 +1,29 @@
+Package: EcoLinkPredict
+Type: Package
+Title: Finds Missing Links and Metric Confidence Intervals in Ecological Bipartite Networks
+Version: 0.1.0
+Authors@R: person('Chris', 'Terry'  , email=  'christerry3@btinternet.com', role = c("aut", "cre"))
+Description: Provides methods to deal with under sampling in ecological bipartite networks. Includes 
+     tools to fit a variety of statistical network models and sample coverage estimators to highlight most likely 
+     missing links. Also includes simple functions to resample from observed networks to generate confidence 
+     intervals for common ecological network metrics. 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    bipartite (>= 2.11),
+    reshape2 (>= 1.4.3),
+    magrittr (>= 1.5),
+    vegan (>= 2.5-3),
+    purrr (>= 0.2.5),
+    dplyr,
+    tidyr,
+    ggplot2 (>= 3.1.0),
+    boot
+Suggests:
+    knitr (>= 1.20),
+    rmarkdown (>= 1.10),
+    pROC (>= 1.13.0),
+    lattice
+RoxygenNote: 6.1.1
+VignetteBuilder: knitr
