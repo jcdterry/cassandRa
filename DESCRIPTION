@@ -1,4 +1,4 @@
-Package: EcoLinkPredict
+Package: cassandRa
 Type: Package
 Title: Finds Missing Links and Metric Confidence Intervals in Ecological Bipartite Networks
 Version: 0.1.0
