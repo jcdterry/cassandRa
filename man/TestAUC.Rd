@@ -10,7 +10,7 @@ TestAUC(list)
 \item{list}{Network List}
 }
 \value{
-a list with 'DataforAUC', a data frame with each interaction as a row and the predictiions
+a list with 'DataforAUC', a data frame with each interaction as a row and the predictions
  of each model, and 'AUC', a data frame with the predictive capacity of all the models and many combinations
 }
 \description{

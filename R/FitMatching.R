@@ -14,7 +14,7 @@
 #' @param method Passed to optim, default = 'Nelder-Mead'
 #' @param ExtraSettings Other control settings to pass to optim()
 #'
-#' @return Network list with added 'M_par',the best fitting parameters, 'M_ProbsMatrix', the probabilty matrix
+#' @return Network list with added 'M_par',the best fitting parameters, 'M_ProbsMatrix', the probability matrix
 #' @export
 #'
 #'

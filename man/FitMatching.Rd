@@ -20,7 +20,7 @@ be used to construct the probability matrix}
 \item{ExtraSettings}{Other control settings to pass to optim()}
 }
 \value{
-Network list with added 'M_par',the best fitting parameters, 'M_ProbsMatrix', the probabilty matrix
+Network list with added 'M_par',the best fitting parameters, 'M_ProbsMatrix', the probability matrix
 }
 \description{
 Repeatedly fits a latent trait model to a binary interaction network to return a probability matrix

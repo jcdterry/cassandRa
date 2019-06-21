@@ -7,7 +7,7 @@
 #' @param N_p Number of parameters to draw from a normal distribution
 #' @param fixedSt_P Vector of fixed parameters to pass
 #' @param N_unif_P Number of parameters to take from a uniform distribution
-#' @param func Function to optimser
+#' @param func Function to optimiser
 #' @param ExtraSettings Additional setting to pass to control
 #'
 #' @return A 'fit' object form optim, with a few of the input parameters attached.

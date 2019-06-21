@@ -22,7 +22,7 @@ Optimiser(i = NULL, maxit = 10000, method = "Nelder-Mead", A, N_p,
 
 \item{N_unif_P}{Number of parameters to take from a uniform distribution}
 
-\item{func}{Function to optimser}
+\item{func}{Function to optimiser}
 
 \item{ExtraSettings}{Additional setting to pass to control}
 }

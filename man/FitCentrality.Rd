@@ -19,7 +19,7 @@ FitCentrality(list, N_runs = 10, maxit = 10000,
 \item{ExtraSettings}{Other control settings to pass to optim()}
 }
 \value{
-Network list with added 'C_par', best fitting parameters, C_ProbsMatrix, the probabilty matrix
+Network list with added 'C_par', best fitting parameters, C_ProbsMatrix, the probability matrix
 }
 \description{
 Repeatedly fits a centrality model to a binary interaction network to return a probability matrix

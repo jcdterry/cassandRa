@@ -2,7 +2,7 @@
 #'
 #' @param list Network List
 #'
-#' @return a list with 'DataforAUC', a data frame with each interaction as a row and the predictiions
+#' @return a list with 'DataforAUC', a data frame with each interaction as a row and the predictions
 #'  of each model, and 'AUC', a data frame with the predictive capacity of all the models and many combinations
 #' @export
 #'
