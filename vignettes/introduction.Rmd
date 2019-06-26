@@ -26,7 +26,7 @@ require(ggplot2)
 
 # Introduction
 
-This package provides tools to determine the probably effect of undersampling in bipartite ecological networks and tools to determine likely gaps in ecological data following the approaches discussed in *Finding missing links in interaction networks* by Terry & Lewis (2019).
+This package provides tools to determine the probably effect of undersampling in bipartite ecological networks and tools to determine likely gaps in ecological data following the approaches discussed in *Finding missing links in interaction networks* by Terry & Lewis (*in prep*).
 
 While this cannot replace further sampling, by making it as easy as possible to assess the most likely missing links, we hope we can encourage further consideration of the quality of ecological networks. 
 
