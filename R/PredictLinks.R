@@ -1,10 +1,9 @@
 #' Generates a network list from a food web and fits all network models
 #'
+#' 
 #' First calls \code{CreateListObject} to convert a matrix suitable for the bipartite package into a list structure.
 #'
 #' Then it calls \code{FitAllModels} to fit each of the missing link models in turn.
-#'
-#'
 #'
 #' @param web in format specified by the bipartite package. Rows = focal layer, columns = response layer
 #' @param RepeatModels How many times to fit each model from different starting points. Uses best half (rounding up)
@@ -20,7 +19,7 @@
 
 PredictLinks<- function(web, RepeatModels = 10){
   SF <- CreateListObject(web)
-  list <- FitAllModels(SF, RepeatModels = RepeatModels, SaveName = NULL)
+  list <- FitAllModels(SF, RepeatModels = RepeatModels)
 
   reshape2::melt(list$C_ProbsMatrix)%>%
     dplyr::rename('Centrality_Prob' = value)%>%

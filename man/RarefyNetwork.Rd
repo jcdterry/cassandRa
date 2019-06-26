@@ -41,6 +41,8 @@ Can return either a data frame of raw metrics, a ggplot or a data frame of 'conf
 
 These CI are calculated from the set of resamples by ordering the network values and taking the
 value of the metric ranked at the 5th and 95th percentile. (this method is very similar to that
+employed by Casas \emph{et al.} 2018 \emph{Assessing sampling sufficiency of network metrics using bootstrap}
+Ecological Complexity 36:268-275.)
 
 Note that confidence intervals for many metrics, particularly qualitative ones, will be biased by
  the issue of false-negatives. Resampling of observations will not introduce missing links.

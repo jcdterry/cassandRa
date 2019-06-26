@@ -15,7 +15,12 @@
 #' @param GuidesOff Should the legends be switched off. Defaults to TRUE
 #'
 #' @return A ggplot object, which by default will print to the device, but can be added to make further tweaks
-
+#' @examples
+#' \dontrun{
+#' data(Safariland, 'bipartite')
+#' tmp<- PredictLinks(Safariland)
+#' PlotFit(tmp, Matrix_to_plot = 'SBM')
+#' }
 #' @export
 
 PlotFit <- function(list, Matrix_to_plot, OrderBy = 'Default',

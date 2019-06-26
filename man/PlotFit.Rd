@@ -34,3 +34,10 @@ Takes the output from other functions (including \code{PredictLinks()}) to visua
 \details{
 See the vignette for a more through description and examples.
 }
+\examples{
+\dontrun{
+data(Safariland, 'bipartite')
+tmp<- PredictLinks(Safariland)
+PlotFit(tmp, Matrix_to_plot = 'SBM')
+}
+}

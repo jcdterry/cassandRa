@@ -5,9 +5,15 @@
 #' @param df A data frame produced by RarefyNetwork
 #'
 #' @return A ggplot
+#' 
+#' @examples
+#'  \dontrun{
+#'  X<-RarefyNetwork(Safariland, n_per_level = 100)
+#'  ComputeCI(X)
+#'  }
+#' 
+#' 
 #' @export
-#'
-#'
 PlotRarefaction <- function(df){
   df %>%
     tidyr::gather('Metric', 'Value', -SampleSize)%>%

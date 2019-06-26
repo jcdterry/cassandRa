@@ -4,19 +4,18 @@
 \alias{FitAllModels}
 \title{Fit all the models}
 \usage{
-FitAllModels(list, RepeatModels = 10, SaveName = NULL)
+FitAllModels(list, RepeatModels = 10)
 }
 \arguments{
 \item{list}{A network list}
 
 \item{RepeatModels}{How many times to fit each model from different starting points. Uses best half (rounding up)}
-
-\item{SaveName}{Options string. If provided, will save the output to the name.}
 }
 \value{
 A network list including the model fit
 }
 \description{
-Fits the coverage deficit, Trait, Centrality, Matching-Centrality and SBM models by sequentially
- calling the individual functions. W
+Internal function called by \code{PredictLinks()}
+ Fits the coverage deficit, Trait, Centrality, Matching-Centrality and SBM models by sequentially
+ calling the individual functions.
 }

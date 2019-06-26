@@ -1,8 +1,14 @@
 #' Compute Basic Confidence Intervals
 #'
-#' @param df A data frame produced by RarefyNetwork
+#' @param df A data frame produced by \code{RarefyNetwork()}
 #'
 #' @return a dataframe detailing confidence intervals at each tested sample size
+#'
+#' @examples
+#'  \dontrun{
+#'  X<-RarefyNetwork(Safariland, n_per_level = 100)
+#'  PlotRarefaction(X)
+#'  }
 #' @export
 ComputeCI <- function(df){
   map_df(unique(df$SampleSize),function(Size, df){

@@ -15,3 +15,11 @@ A ggplot
 \description{
 Used to plot the output from \code{RarefyNetwork()}. See vignette!
 }
+\examples{
+ \dontrun{
+ X<-RarefyNetwork(Safariland, n_per_level = 100)
+ ComputeCI(X)
+ }
+
+
+}
