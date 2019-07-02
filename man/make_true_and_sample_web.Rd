@@ -12,7 +12,7 @@ make_true_and_sample_web(seed = NULL, specpar = 1, n_hosts = 10,
 \arguments{
 \item{seed}{Random number generator seed, if specified.}
 
-\item{specpar}{Specialisation parameter, equal to 1/sd of the nornmal curve that defines the consumption range}
+\item{specpar}{Specialisation parameter, equal to 1/sd of the normal curve that defines the consumption range}
 
 \item{n_hosts}{Number of focal level species (e.g. hosts, flowers)}
 
@@ -24,7 +24,7 @@ make_true_and_sample_web(seed = NULL, specpar = 1, n_hosts = 10,
 
 \item{abun_mean}{Mean abundance level (log scale).}
 
-\item{abun_sdlog}{Distributon of abundance level (SD vlog scale).}
+\item{abun_sdlog}{Distributon of abundance level (SD log scale).}
 
 \item{traitvsnested}{The relative balance between the nestedness generator and the trait-based generator}
 

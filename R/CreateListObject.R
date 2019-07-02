@@ -10,10 +10,10 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' data(Safariland, package = 'bipartite')
 #' demolist<-CreateListObject(Safariland)
 #' str(demolist)
-#' }
+
 CreateListObject<- function(web){
 
 

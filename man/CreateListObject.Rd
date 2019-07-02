@@ -18,8 +18,7 @@ Gets a network in the base bipartite package format into a list format. N.B. Thr
   be 'plants' and 'pollinators'.
 }
 \examples{
-\dontrun{
+data(Safariland, package = 'bipartite')
 demolist<-CreateListObject(Safariland)
 str(demolist)
-}
 }

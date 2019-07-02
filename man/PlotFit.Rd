@@ -35,9 +35,18 @@ Takes the output from other functions (including \code{PredictLinks()}) to visua
 See the vignette for a more through description and examples.
 }
 \examples{
+
 \dontrun{
-data(Safariland, 'bipartite')
-tmp<- PredictLinks(Safariland)
+data(Safariland, package = 'bipartite')
+Predictions<- PredictLinks(Safariland)
+PlotFit(Predictions, Matrix_to_plot = 'SBM')
+}
+
+\dontshow{
+data(Safariland, package ='bipartite')
+tmp<- PredictLinks(Safariland[,1:10], RepeatModels = 1) # Smaller to finish in time for CRAN tests
 PlotFit(tmp, Matrix_to_plot = 'SBM')
 }
+
+
 }

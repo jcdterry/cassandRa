@@ -5,14 +5,12 @@
 #' @param df A data frame produced by RarefyNetwork
 #'
 #' @return A ggplot
-#' 
+#'
 #' @examples
-#'  \dontrun{
+#'  data(Safariland, package = 'bipartite')
 #'  X<-RarefyNetwork(Safariland, n_per_level = 100)
 #'  ComputeCI(X)
-#'  }
-#' 
-#' 
+#'
 #' @export
 PlotRarefaction <- function(df){
   df %>%

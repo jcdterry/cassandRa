@@ -35,7 +35,9 @@
 #' @seealso \code{\link[bipartite]{networklevel}}
 #'
 #' @return Either a dataframe or a ggplot object. See details.
-#' @examples \dontrun{RarefyNetwork(Safariland, n_per_level = 100)}
+#' @examples
+#' data(Safariland, package = 'bipartite')
+#' RarefyNetwork(Safariland, n_per_level = 100)
 #' @export
 RarefyNetwork<- function(web, n_per_level= 1000,
                          frac_sample_levels = seq(0.2, 1, l=5),

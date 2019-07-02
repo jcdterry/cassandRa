@@ -54,7 +54,8 @@ It is possible to extrapolate how increases sample size may lead to increased co
 Set the sequence to \code{frac_sample_levels} to go beyond 1.
 }
 \examples{
-\dontrun{RarefyNetwork(Safariland, n_per_level = 100)}
+data(Safariland, package = 'bipartite')
+RarefyNetwork(Safariland, n_per_level = 100)
 }
 \seealso{
 \code{\link[bipartite]{networklevel}}

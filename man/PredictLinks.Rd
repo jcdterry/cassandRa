@@ -22,8 +22,16 @@ Then it calls \code{FitAllModels} to fit each of the missing link models in turn
 }
 \examples{
 \dontrun{
-data(Safariland, 'bipartite')
-tmp<- PredictLinks(Safariland)
-PlotFit(tmp, Matrix_to_plot = 'SBM')
+data(Safariland, package = 'bipartite')
+PredictLinks(Safariland)
 }
+
+\dontshow{
+data(Safariland,package = 'bipartite')
+PredictLinks(Safariland[,1:10], RepeatModels = 1) # Smaller to finish in time for CRAN tests
+}
+
+
+
+
 }

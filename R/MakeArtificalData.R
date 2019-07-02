@@ -7,13 +7,13 @@
 #'  introducing noise)
 #'
 #' @param seed Random number generator seed, if specified.
-#' @param specpar Specialisation parameter, equal to 1/sd of the nornmal curve that defines the consumption range
+#' @param specpar Specialisation parameter, equal to 1/sd of the normal curve that defines the consumption range
 #' @param n_hosts Number of focal level species (e.g. hosts, flowers)
 #' @param n_wasps Number of non-focal level species (e.g. parasitic wasps, pollinators)
 #' @param TargetTrueConn Proportion of possible interactions to keep
 #' @param SampleObs Number of samples to draw
 #' @param abun_mean Mean abundance level (log scale).
-#' @param abun_sdlog Distributon of abundance level (SD vlog scale).
+#' @param abun_sdlog Distributon of abundance level (SD log scale).
 #' @param traitvsnested The relative balance between the nestedness generator and the trait-based generator
 #' @param hosttrait_n Number of trait dimensions. Default 'two', uses two traits, with one dominant. 'single' and 'multi' retained from Frund et al.
 #'

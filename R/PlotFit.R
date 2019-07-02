@@ -16,11 +16,20 @@
 #'
 #' @return A ggplot object, which by default will print to the device, but can be added to make further tweaks
 #' @examples
+#'
 #' \dontrun{
-#' data(Safariland, 'bipartite')
-#' tmp<- PredictLinks(Safariland)
+#' data(Safariland, package = 'bipartite')
+#' Predictions<- PredictLinks(Safariland)
+#' PlotFit(Predictions, Matrix_to_plot = 'SBM')
+#' }
+#'
+#' \dontshow{
+#' data(Safariland, package ='bipartite')
+#' tmp<- PredictLinks(Safariland[,1:10], RepeatModels = 1) # Smaller to finish in time for CRAN tests
 #' PlotFit(tmp, Matrix_to_plot = 'SBM')
 #' }
+#'
+#'
 #' @export
 
 PlotFit <- function(list, Matrix_to_plot, OrderBy = 'Default',

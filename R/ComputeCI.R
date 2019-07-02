@@ -5,10 +5,9 @@
 #' @return a dataframe detailing confidence intervals at each tested sample size
 #'
 #' @examples
-#'  \dontrun{
+#'  data(Safariland, package = 'bipartite')
 #'  X<-RarefyNetwork(Safariland, n_per_level = 100)
 #'  PlotRarefaction(X)
-#'  }
 #' @export
 ComputeCI <- function(df){
   map_df(unique(df$SampleSize),function(Size, df){

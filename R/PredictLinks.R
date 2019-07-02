@@ -1,6 +1,6 @@
 #' Generates a network list from a food web and fits all network models
 #'
-#' 
+#'
 #' First calls \code{CreateListObject} to convert a matrix suitable for the bipartite package into a list structure.
 #'
 #' Then it calls \code{FitAllModels} to fit each of the missing link models in turn.
@@ -12,10 +12,18 @@
 #'
 #' @examples
 #' \dontrun{
-#' data(Safariland, 'bipartite')
-#' tmp<- PredictLinks(Safariland)
-#' PlotFit(tmp, Matrix_to_plot = 'SBM')
+#' data(Safariland, package = 'bipartite')
+#' PredictLinks(Safariland)
 #' }
+#'
+#' \dontshow{
+#' data(Safariland,package = 'bipartite')
+#' PredictLinks(Safariland[,1:10], RepeatModels = 1) # Smaller to finish in time for CRAN tests
+#' }
+#'
+#'
+#'
+#'
 
 PredictLinks<- function(web, RepeatModels = 10){
   SF <- CreateListObject(web)

@@ -16,10 +16,8 @@ A ggplot
 Used to plot the output from \code{RarefyNetwork()}. See vignette!
 }
 \examples{
- \dontrun{
+ data(Safariland, package = 'bipartite')
  X<-RarefyNetwork(Safariland, n_per_level = 100)
  ComputeCI(X)
- }
-
 
 }
