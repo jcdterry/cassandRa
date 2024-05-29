@@ -13,6 +13,10 @@
 #'
 #' @export
 PlotRarefaction <- function(df){
+  #### Because tidyverse functions don't give visible bindings, which CRAN complains about,
+  #### need to to define names here to stop Note.
+  SampleSize<-NULL;Value<-NULL
+
   df %>%
     tidyr::gather('Metric', 'Value', -SampleSize)%>%
     ggplot(aes(x= factor(SampleSize), y = Value) )+

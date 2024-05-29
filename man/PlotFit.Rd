@@ -4,8 +4,16 @@
 \alias{PlotFit}
 \title{Plot the fitted network models}
 \usage{
-PlotFit(list, Matrix_to_plot, OrderBy = "Default", addDots = TRUE,
-  title = NULL, Combine = "+", RemoveTP = FALSE, GuidesOff = TRUE)
+PlotFit(
+  list,
+  Matrix_to_plot,
+  OrderBy = "Default",
+  addDots = TRUE,
+  title = NULL,
+  Combine = "+",
+  RemoveTP = FALSE,
+  GuidesOff = TRUE
+)
 }
 \arguments{
 \item{list}{A list-format network (output from xxx)}

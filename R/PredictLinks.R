@@ -26,6 +26,11 @@
 #'
 
 PredictLinks<- function(web, RepeatModels = 10){
+
+  #### Because tidyverse functions don't give visible bindings, which CRAN complains about,
+  #### need to to define names here to stop Note.
+value<-NULL;Centrality_Prob<-NULL;Matching_Prob<-NULL;Both_Prob<-NULL;SBM_Prob<-NULL;C_def_Prob<-NULL;Var1<-NULL;Var2<-NULL;int_code<-NULL;
+
   SF <- CreateListObject(web)
   list <- FitAllModels(SF, RepeatModels = RepeatModels)
 

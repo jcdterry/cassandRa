@@ -4,8 +4,13 @@
 \alias{FitCentrality}
 \title{Fit Centrality Model}
 \usage{
-FitCentrality(list, N_runs = 10, maxit = 10000,
-  method = "Nelder-Mead", ExtraSettings = NULL)
+FitCentrality(
+  list,
+  N_runs = 10,
+  maxit = 10000,
+  method = "Nelder-Mead",
+  ExtraSettings = NULL
+)
 }
 \arguments{
 \item{list}{Network List}

@@ -4,8 +4,13 @@
 \alias{FitMatching}
 \title{Fit Latent Trait (Matching Model)}
 \usage{
-FitMatching(list, N_runs = 10, maxit = 10000, method = "Nelder-Mead",
-  ExtraSettings = NULL)
+FitMatching(
+  list,
+  N_runs = 10,
+  maxit = 10000,
+  method = "Nelder-Mead",
+  ExtraSettings = NULL
+)
 }
 \arguments{
 \item{list}{Network List}

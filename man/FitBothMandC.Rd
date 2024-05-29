@@ -4,8 +4,13 @@
 \alias{FitBothMandC}
 \title{Fit Matching-Centrality Model}
 \usage{
-FitBothMandC(list, N_runs = 10, maxit = 10000,
-  method = "Nelder-Mead", ExtraSettings = NULL)
+FitBothMandC(
+  list,
+  N_runs = 10,
+  maxit = 10000,
+  method = "Nelder-Mead",
+  ExtraSettings = NULL
+)
 }
 \arguments{
 \item{list}{Network List}

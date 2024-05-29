@@ -4,10 +4,18 @@
 \alias{make_true_and_sample_web}
 \title{Make an artificial bipartite networks with some properties of ecological networks, then sample from it}
 \usage{
-make_true_and_sample_web(seed = NULL, specpar = 1, n_hosts = 10,
-  n_wasps = 10, TargetTrueConn = 0.5, SampleObs = 1000,
-  abun_mean = 5, abun_sdlog = 1, traitvsnested = 0.5,
-  hosttrait_n = "two")
+make_true_and_sample_web(
+  seed = NULL,
+  specpar = 1,
+  n_hosts = 10,
+  n_wasps = 10,
+  TargetTrueConn = 0.5,
+  SampleObs = 1000,
+  abun_mean = 5,
+  abun_sdlog = 1,
+  traitvsnested = 0.5,
+  hosttrait_n = "two"
+)
 }
 \arguments{
 \item{seed}{Random number generator seed, if specified.}

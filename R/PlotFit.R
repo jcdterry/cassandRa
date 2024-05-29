@@ -34,6 +34,13 @@
 
 PlotFit <- function(list, Matrix_to_plot, OrderBy = 'Default',
                     addDots = TRUE, title= NULL, Combine='+', RemoveTP=FALSE, GuidesOff = TRUE){
+
+  #### Because tidyverse functions don't give visible bindings, which CRAN complains about,
+  #### need to to define names here to stop Note.
+  Var1<- NULL;Var2<- NULL;value<- NULL;Host<- NULL;Wasp<- NULL;int_code<- NULL;Prob<- NULL;HostName<- NULL;WaspName<- NULL;ObsStr<- NULL
+
+
+
   x<-list
   if(is.null(title)){   title<- paste(Matrix_to_plot, collapse = Combine)}
 

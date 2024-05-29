@@ -1,5 +1,5 @@
 ## Test environments
-* Local Windows 10 R.3.6.0
+* Local Windows 10 R.4.4.0
 Via RHub: 
 * Debian Linux, R-release, GCC 
 * Windows Server 2008 R2 SP1, R-devel, 32/64 bit
@@ -8,16 +8,14 @@ Via RHub:
 * Fedora Linux, R-devel, clang, gfortran
 
 ## R CMD check results
-There were no ERRORs, WARNINGs or NOTEs reported, apart from 'New Submission' note.
+There were no ERRORs, WARNINGs or NOTEs reported
 
 ## Downstream dependencies
 
 There are currently no reverse dependencies for this package.
 
-## Improvements following CRAN feedback (2):
+## Fixes following email 
 
-- please replace \dontrun{} by \donttest{} or unwrap the examples if they can be executed in less thatn 5 sec per Rd-file
-
-Examples in documentation take longer than 5 seconds. To allow testing, I have added compact and rapid tests wrapped in \dontshow{} to all the user facing functions. On rhub these take less than 5 seconds.  
-
+Removed Lazy data and issue with package aliases raised in email. 
+Fixed issue of codetools being confused by dplyr syntax by declaring null global variables.
 

@@ -10,6 +10,7 @@
 #'  PlotRarefaction(X)
 #' @export
 ComputeCI <- function(df){
+  SampleSize<-NULL
   map_df(unique(df$SampleSize),function(Size, df){
 
     dfs<- dplyr::filter(df, SampleSize ==  Size)
@@ -36,6 +37,6 @@ ComputeCI <- function(df){
     }
     CI_df
   } ,   df=df )%>%
-    dplyr::arrange(Metric)
+    dplyr::arrange(.data$Metric)
 }
 

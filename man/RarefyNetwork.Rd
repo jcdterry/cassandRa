@@ -4,9 +4,17 @@
 \alias{RarefyNetwork}
 \title{Recalculate Network Metrics With Rarefied Webs}
 \usage{
-RarefyNetwork(web, n_per_level = 1000, frac_sample_levels = seq(0.2, 1,
-  l = 5), abs_sample_levels = NULL, metrics = "info",
-  PARALLEL = FALSE, cores = 2, output = "df", ...)
+RarefyNetwork(
+  web,
+  n_per_level = 1000,
+  frac_sample_levels = seq(0.2, 1, l = 5),
+  abs_sample_levels = NULL,
+  metrics = "info",
+  PARALLEL = FALSE,
+  cores = 2,
+  output = "df",
+  ...
+)
 }
 \arguments{
 \item{web}{A matrix format web, as for \code{bipartite}}

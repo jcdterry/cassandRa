@@ -7,6 +7,10 @@
 #'
 SortResponseCategory <- function(list){
 
+  #### Because tidyverse functions don't give visible bindings, which CRAN complains about,
+  #### need to to define names here to stop Note.
+Var1<-NULL;Var2<-NULL;value<-NULL;Category<-NULL;Host<-NULL;Wasp<-NULL;int_code<-NULL;LogStr<-NULL;ObsStr<-NULL
+
   ## Compares observations with known truth to assess fit quality
 
   Observed <- (list$obs>0)

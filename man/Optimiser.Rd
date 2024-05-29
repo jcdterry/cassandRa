@@ -4,8 +4,17 @@
 \alias{Optimiser}
 \title{Optimiser wrapper for network models}
 \usage{
-Optimiser(i = NULL, maxit = 10000, method = "Nelder-Mead", A, N_p,
-  fixedSt_P = c(), N_unif_P = 0, func, ExtraSettings = NULL)
+Optimiser(
+  i = NULL,
+  maxit = 10000,
+  method = "Nelder-Mead",
+  A,
+  N_p,
+  fixedSt_P = c(),
+  N_unif_P = 0,
+  func,
+  ExtraSettings = NULL
+)
 }
 \arguments{
 \item{i}{RNG Seed to set}

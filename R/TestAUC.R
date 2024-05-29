@@ -8,10 +8,16 @@
 #'
 TestAUC  <- function(list){
 
+
+
   if(is.null(list$ObsSuccess)){
     stop('No success data. Run SortResponseCategory() First')
   }
 
+  #### Because tidyverse functions don't give visible bindings, which CRAN complains about,
+  #### need to to define names here to stop Note.
+  Var1<-NULL;Var2<-NULL;value<-NULL;Host<-NULL;Wasp<-NULL;int_code<-NULL;Centrality_Prob<-NULL
+  Matching_Prob<-NULL;Both_Prob<-NULL;SBM_Prob<-NULL;C_def_Prob<-NULL;Category<-NULL
 
   reshape2::melt(list$C_ProbsMatrix)%>%
     dplyr::rename('Host' = Var1, 'Wasp' = Var2,
