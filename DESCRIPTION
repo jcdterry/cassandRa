@@ -4,7 +4,7 @@ Title: Finds Missing Links and Metric Confidence Intervals in Ecological Biparti
 Version: 0.2.0
 Authors@R: person("Chris", "Terry", email = "christerry3@btinternet.com", role = c("aut", "cre", "cph"))
 Description: Provides methods to deal with under sampling in ecological bipartite networks from
-     Terry and Lewis (2020) Ecology doi:10.1002/ecy.3047 Includes 
+     Terry and Lewis (2020) Ecology <doi:10.1002/ecy.3047> Includes 
      tools to fit a variety of statistical network models and sample coverage estimators to highlight most likely 
      missing links. Also includes simple functions to resample from observed networks to generate confidence 
      intervals for common ecological network metrics. 
